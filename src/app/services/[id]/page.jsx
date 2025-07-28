@@ -161,7 +161,7 @@ export default async function ServicesDetails({ params }) {
         </div>
 
         {/* right side */}
-        <div className="col-span-12 md:col-span-4 w-full h-72">
+        <div className="col-span-12 md:col-span-4 w-full md:h-72">
           <div className="bg-base-300 p-4 rounded-lg">
             <h1 className="text-xl font-bold mb-5">Services</h1>
             <ul className="flex flex-col gap-2">

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function Register() {
+export default function Login() {
   return (
     <div className="py-5">
       <div className="hero-content">
@@ -15,51 +15,27 @@ export default function Register() {
             height={502}
           />
         </div>
-
         <div className="card bg-base-100 shrink-0 shadow-2xl px-6 border border-gray-300">
-          <h1 className="text-2xl text-center font-bold mt-2">
-            Registration now!
-          </h1>
+          <h1 className="text-2xl text-center font-bold mt-2">Login now!</h1>
           <div className="card-body">
             <form className="fieldset">
-              {/* name */}
+              <label className="label">Email</label>
+              <input
+                type="email"
+                className="input w-full"
+                placeholder="Email"
+              />
+              <label className="label">Password</label>
+              <input
+                type="password"
+                className="input w-full"
+                placeholder="Password"
+              />
               <div>
-                <label className="label">Name</label>
-                <input
-                  type="text"
-                  className="input w-full"
-                  placeholder="Name"
-                />
-              </div>
-              {/* email */}
-              <div>
-                <label className="label">Email</label>
-                <input
-                  type="email"
-                  className="input w-full"
-                  placeholder="Email"
-                />
-              </div>
-              {/* password */}
-              <div>
-                <label className="label">Password</label>
-                <input
-                  type="password"
-                  className="input w-full"
-                  placeholder="Password"
-                />
-              </div>
-              {/* confirm password */}
-              <div>
-                <label className="label">Confirm Password</label>
-                <input
-                  type="password"
-                  className="input w-full"
-                  placeholder="Confirm Password"
-                />
+                <a className="link link-hover">Forgot password?</a>
               </div>
               <button className="btn btn-neutral mt-4 bg-primary border-0 rounded-lg">
-                Registration
+                Login
               </button>
             </form>
 
@@ -99,13 +75,13 @@ export default function Register() {
               </button>
             </div>
             <p className="text-xs text-center sm:px-6 text-gray-600">
-              Already have an account?{" "}
+              Don't have an account?{" "}
               <Link
                 rel="noopener noreferrer"
-                href="/login"
+                href="/register"
                 className="underline text-gray-800"
               >
-                Login
+                Registration
               </Link>
             </p>
           </div>

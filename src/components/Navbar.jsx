@@ -26,7 +26,7 @@ export default function Navbar() {
   );
 
   return (
-    <div className="bg-base-300 shadow-md">
+    <div className="shadow-md sticky top-0 z-50 bg-base-100">
       <div className="navbar w-11/12 mx-auto px-0">
         <div className="navbar-start">
           <div className="dropdown">
@@ -71,10 +71,18 @@ export default function Navbar() {
         </div>
         <div className="navbar-end gap-5">
           <div>
-            <SlHandbag size={20} />
+            <SlHandbag size={20} className="cursor-pointer" />
           </div>
           <div>
-            <BsSearch size={20} />
+            <BsSearch size={20} className="cursor-pointer" />
+          </div>
+          <div>
+            <Link
+              href={"/login"}
+              className="btn bg-primary rounded-lg border-0 text-white hover:text-black"
+            >
+              Login
+            </Link>
           </div>
           <div>
             <a className="btn btn-outline bg-primary border-0 text-white hover:text-black rounded-lg">
