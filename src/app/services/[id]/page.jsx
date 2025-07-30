@@ -1,5 +1,3 @@
-import dbConnect, { collectionName } from "@/lib/dbConnect";
-import { ObjectId } from "mongodb";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -9,11 +7,10 @@ import { GiNetworkBars } from "react-icons/gi";
 export default async function ServicesDetails({ params }) {
   const { id } = await params;
 
-  const servicesData = await dbConnect(collectionName.cars).findOne({
-    _id: new ObjectId(id),
-  });
+  console.log(id);
 
-  // console.log(servicesData);
+  const res = await fetch(`http://localhost:3000/api/service/${id}`);
+  const servicesData = await res.json();
 
   return (
     <div className="my-10">
@@ -47,8 +44,8 @@ export default async function ServicesDetails({ params }) {
           <div>
             <Image
               className="w-full h-72 object-center object-fill rounded-lg"
-              src={servicesData.img}
-              alt={servicesData.title}
+              src={servicesData?.img}
+              alt={servicesData?.title}
               width={752}
               height={400}
             />
@@ -56,7 +53,7 @@ export default async function ServicesDetails({ params }) {
 
           <div>
             <h2 className="text-2xl font-bold mt-10 mb-3">
-              {servicesData.title}
+              {servicesData?.title}
             </h2>
             <p className="text-base-200">
               There are many variations of passages of Lorem Ipsum available,

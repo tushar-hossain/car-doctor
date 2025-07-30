@@ -1,10 +1,14 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 import { SlHandbag } from "react-icons/sl";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
+  const session = useSession();
+
   const links = (
     <>
       <li>
@@ -77,12 +81,49 @@ export default function Navbar() {
             <BsSearch size={20} className="cursor-pointer" />
           </div>
           <div>
-            <Link
-              href={"/login"}
-              className="btn bg-primary rounded-lg border-0 text-white hover:text-black"
-            >
-              Login
-            </Link>
+            {session?.status === "authenticated" && session?.data ? (
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    {session?.status === "authenticated" ? (
+                      <Image
+                        src={session?.data?.user?.image}
+                        alt="User image"
+                        width={20}
+                        height={20}
+                      />
+                    ) : (
+                      ""
+                    )}
+
+                    {/*  */}
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                >
+                  <p className="ms-2 font-bold">{session.data.user.name}</p>
+                  <li>
+                    <Link href={"/dashboard"}>Dashboard</Link>
+                  </li>
+                  <li>
+                    <button onClick={() => signOut()}>Logout</button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <Link
+                href={"/login"}
+                className="btn bg-primary rounded-lg border-0 text-white hover:text-black"
+              >
+                Login
+              </Link>
+            )}
           </div>
           <div>
             <a className="btn btn-outline bg-primary border-0 text-white hover:text-black rounded-lg">
