@@ -3,9 +3,9 @@ import { headers } from "next/headers";
 
 const myBooking = async () => {
   const res = await fetch("http://localhost:3000/api/service", {
-    headers: headers(),
+    headers: await headers(),
   });
-  const bookingData = await res.json();
+  const bookingData = await res?.json();
   return bookingData;
 };
 

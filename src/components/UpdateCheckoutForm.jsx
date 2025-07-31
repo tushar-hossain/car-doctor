@@ -1,10 +1,12 @@
 "use client";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 
 export default function UpdateCheckoutForm({ data }) {
   const session = useSession();
+  const router = useRouter();
 
   const handelSubmit = async (e) => {
     e.preventDefault();
@@ -14,31 +16,27 @@ export default function UpdateCheckoutForm({ data }) {
     const address = form.address.value;
 
     const payload = {
-      // name: session?.data?.user?.name,
-      // email: session?.data?.user?.email,
       date,
-      // price: data?.price,
       phone,
       address,
-      // service_id: data?._id,
-      // service_name: data?.title,
-      // service_img: data?.img,
     };
 
     //   data post server
     try {
-      const res = await fetch("http://localhost:3000/api/service", {
-        method: "PATCH",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
+      const res = await fetch(
+        `http://localhost:3000/api/update-booking/${data._id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const result = await res.json();
-      if (result?.insertedId) {
-        toast.success("Service booking successful");
-        form.reset();
+      if (result.modifiedCount) {
+        toast.success("Update successful");
+        router.push("/my-booking");
       }
     } catch (error) {
       toast.error("Service is not booked");

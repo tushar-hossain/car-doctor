@@ -16,6 +16,8 @@ export default function MyBookingTables({ booking }) {
               <th>Service Name</th>
               <th>Price</th>
               <th>Date</th>
+              <th>Phone</th>
+              <th>Address</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -24,7 +26,7 @@ export default function MyBookingTables({ booking }) {
             {/* row 1 */}
             {booking?.map((bookCar, index) => {
               return (
-                <tr key={bookCar._id}>
+                <tr key={bookCar?._id}>
                   <td>{index + 1}</td>
                   <td>
                     <div className="flex items-center gap-3">
@@ -39,25 +41,27 @@ export default function MyBookingTables({ booking }) {
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">{bookCar.service_name}</div>
+                        <div className="font-bold">{bookCar?.service_name}</div>
                       </div>
                     </div>
                   </td>
-                  <td>{bookCar.price}</td>
-                  <td>{bookCar.date}</td>
+                  <td>{bookCar?.price}</td>
+                  <td>{bookCar?.date}</td>
+                  <td>{bookCar?.phone}</td>
+                  <td>{bookCar?.address}</td>
                   <th>
                     <button className="btn btn-sm bg-primary rounded-lg border-0 text-white">
                       Pending
                     </button>
                   </th>
                   <th className="flex gap-2 items-center">
-                    <Link href={`/my-booking/${bookCar._id}`}>
+                    <Link href={`/my-booking/${bookCar?._id}`}>
                       <button className="btn btn-sm bg-primary rounded-lg border-0 text-white">
                         <FaEdit size={20} />
                       </button>
                     </Link>
 
-                    <DeleteBooking id={bookCar._id} />
+                    <DeleteBooking id={bookCar?._id} />
                   </th>
                 </tr>
               );
