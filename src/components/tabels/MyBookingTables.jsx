@@ -1,4 +1,4 @@
-import DeleteBooking from "@/app/my-booking/[id]/page";
+import DeleteBooking from "@/app/my-booking/components/DeleteBooking";
 import Image from "next/image";
 import React from "react";
 import { FaEdit } from "react-icons/fa";
@@ -21,7 +21,7 @@ export default function MyBookingTables({ booking }) {
           </thead>
           <tbody>
             {/* row 1 */}
-            {booking.map((bookCar, index) => {
+            {booking?.map((bookCar, index) => {
               return (
                 <tr key={bookCar._id}>
                   <td>{index + 1}</td>
@@ -54,7 +54,6 @@ export default function MyBookingTables({ booking }) {
                       <FaEdit size={20} />
                     </button>
 
-                    {/* delete button */}
                     <DeleteBooking id={bookCar._id} />
                   </th>
                 </tr>

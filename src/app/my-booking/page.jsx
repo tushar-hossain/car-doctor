@@ -1,18 +1,16 @@
-"use client";
 import MyBookingTables from "@/components/tabels/MyBookingTables";
-import React, { useEffect, useState } from "react";
+import { headers } from "next/headers";
 
-export default function MyBookings() {
-  const [booking, setBooking] = useState([]);
+const myBooking = async () => {
+  const res = await fetch("http://localhost:3000/api/service", {
+    headers: headers(),
+  });
+  const bookingData = await res.json();
+  return bookingData;
+};
 
-  useEffect(() => {
-    const myBooking = async () => {
-      const res = await fetch("http://localhost:3000/api/service");
-      const bookingData = await res.json();
-      setBooking(bookingData);
-    };
-    myBooking();
-  }, []);
+export default async function MyBookings() {
+  const booking = await myBooking();
 
   return (
     <div className="my-10">

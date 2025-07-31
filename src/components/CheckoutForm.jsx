@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import React from "react";
 import toast from "react-hot-toast";
 
-export default async function CheckoutForm({ data }) {
+export default function CheckoutForm({ data }) {
   const session = useSession();
 
   const handelSubmit = async (e) => {
