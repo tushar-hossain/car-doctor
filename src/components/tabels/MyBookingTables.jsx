@@ -1,5 +1,6 @@
 import DeleteBooking from "@/app/my-booking/components/DeleteBooking";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaEdit } from "react-icons/fa";
 
@@ -50,9 +51,11 @@ export default function MyBookingTables({ booking }) {
                     </button>
                   </th>
                   <th className="flex gap-2 items-center">
-                    <button className="btn btn-sm bg-primary rounded-lg border-0 text-white">
-                      <FaEdit size={20} />
-                    </button>
+                    <Link href={`/my-booking/${bookCar._id}`}>
+                      <button className="btn btn-sm bg-primary rounded-lg border-0 text-white">
+                        <FaEdit size={20} />
+                      </button>
+                    </Link>
 
                     <DeleteBooking id={bookCar._id} />
                   </th>
