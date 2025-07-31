@@ -6,9 +6,6 @@ import { GiNetworkBars } from "react-icons/gi";
 
 export default async function ServicesDetails({ params }) {
   const { id } = await params;
-
-  console.log(id);
-
   const res = await fetch(`http://localhost:3000/api/service/${id}`);
   const servicesData = await res.json();
 
@@ -164,7 +161,7 @@ export default async function ServicesDetails({ params }) {
             <ul className="flex flex-col gap-2">
               <li>
                 <Link
-                  href={"/register"}
+                  href={"/"}
                   className="flex justify-between bg-base-100 p-2 rounded-lg hover:bg-primary hover:text-white lg:font-semibold items-center"
                 >
                   <span>Full Car Repair</span> <FaArrowRight />{" "}
@@ -172,7 +169,7 @@ export default async function ServicesDetails({ params }) {
               </li>
               <li>
                 <Link
-                  href={"/register"}
+                  href={`/`}
                   className="flex justify-between bg-base-100 p-2 rounded-lg hover:bg-primary hover:text-white lg:font-semibold items-center"
                 >
                   <span>Engine Repair</span>
@@ -181,7 +178,7 @@ export default async function ServicesDetails({ params }) {
               </li>
               <li>
                 <Link
-                  href={"/register"}
+                  href={`/`}
                   className="flex justify-between bg-base-100 p-2 rounded-lg hover:bg-primary hover:text-white lg:font-semibold items-center"
                 >
                   <span>Automatic Services</span>
@@ -190,7 +187,7 @@ export default async function ServicesDetails({ params }) {
               </li>
               <li>
                 <Link
-                  href={"/register"}
+                  href={`/`}
                   className="flex justify-between bg-base-100 p-2 rounded-lg hover:bg-primary hover:text-white lg:font-semibold items-center"
                 >
                   <span>Engine Oil Change</span>
@@ -199,7 +196,7 @@ export default async function ServicesDetails({ params }) {
               </li>
               <li>
                 <Link
-                  href={"/register"}
+                  href={`/`}
                   className="flex justify-between bg-base-100 p-2 rounded-lg hover:bg-primary hover:text-white lg:font-semibold items-center"
                 >
                   <span>Battery Charge</span>
@@ -277,9 +274,11 @@ export default async function ServicesDetails({ params }) {
             <h1 className="text-xl md:text-3xl font-bold mb-2">
               Price $250.00
             </h1>
-            <button className="btn btn-outline bg-primary text-white hover:text-black border-0 w-full rounded-lg">
-              Proceed Checkout
-            </button>
+            <Link href={`/checkout/${servicesData._id}`}>
+              <button className="btn btn-outline bg-primary text-white hover:text-black border-0 w-full rounded-lg">
+                Proceed Checkout
+              </button>
+            </Link>
           </div>
         </div>
       </div>

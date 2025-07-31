@@ -61,16 +61,13 @@ export default function authProvider() {
             role: "user",
           };
 
-          console.log(payload);
-
           const userCollection = dbConnect(collectionName.userCollections);
           const isExistUser = await userCollection.findOne({
             providerAccountId,
           });
 
           if (!isExistUser) {
-            const users = await userCollection.insertOne(payload);
-            console.log(users);
+            await userCollection.insertOne(payload);
           }
         }
 

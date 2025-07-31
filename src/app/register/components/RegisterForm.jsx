@@ -4,8 +4,10 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import UserRegister from "@/app/action/auth/UserRegister";
 import SocialLogin from "@/app/login/components/SocialLogin";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
+  const router = useRouter();
   const handelSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,6 +29,7 @@ export default function RegisterForm() {
 
     const result = await UserRegister(userInfo);
     if (result?.insertedId) {
+      router.push("/");
       toast.success("Registration successful");
     }
     form.reset();
