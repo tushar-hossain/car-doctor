@@ -55,9 +55,12 @@ export default async function ServicesSection() {
         })}
       </div>
       <div className="text-center my-4">
-        <button className="btn btn-outline bg-primary border-0 text-white hover:text-black rounded-lg">
+        <Link
+          href={"/services"}
+          className="btn btn-outline bg-primary border-0 text-white hover:text-black rounded-lg"
+        >
           More Services
-        </button>
+        </Link>
       </div>
     </div>
   );

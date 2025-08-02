@@ -28,9 +28,6 @@ export default function UpdateCheckoutForm({ data }) {
         {
           method: "PATCH",
           body: JSON.stringify(payload),
-          headers: {
-            "Content-Type": "application/json",
-          },
         }
       );
       const result = await res.json();
@@ -52,7 +49,7 @@ export default function UpdateCheckoutForm({ data }) {
           <input
             type="text"
             readOnly
-            value={session?.data?.user?.name}
+            defaultValue={session?.data?.user?.name}
             name="name"
             className="input w-full border-0"
           />
@@ -63,7 +60,7 @@ export default function UpdateCheckoutForm({ data }) {
           <input
             type="email"
             readOnly
-            value={session?.data?.user?.email}
+            defaultValue={session?.data?.user?.email}
             name="email"
             className="input w-full border-0"
           />
@@ -74,7 +71,7 @@ export default function UpdateCheckoutForm({ data }) {
           <input
             type="number"
             readOnly
-            value={data?.price}
+            defaultValue={data?.price}
             name="price"
             className="input w-full border-0"
           />

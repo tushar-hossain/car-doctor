@@ -11,7 +11,7 @@
   --color-primary: #ff3811;
   --color-secondary: #444444;
   --color-base-200: #737373;
-  --color-base-300: #F3F3F3;
+  --color-base-300: #f3f3f3;
 }
 
 .overlayout-bg {
@@ -21,6 +21,14 @@
     rgba(8, 8, 8, 1) 13%,
     rgba(130, 130, 130, 0) 100%,
     rgba(255, 255, 255, 0) 100%
+  );
+}
+.overlayout-bg2 {
+  background: #000000;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.96) 6%,
+    rgba(0, 0, 0, 0.11) 58%
   );
 }
 

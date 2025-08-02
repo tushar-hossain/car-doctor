@@ -1,3 +1,4 @@
+import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 
 const { default: dbConnect, collectionName } = require("@/lib/dbConnect");
@@ -6,12 +7,16 @@ const { NextResponse } = require("next/server");
 
 export const GET = async (req, { params }) => {
   const { id } = await params;
-
   const bookingCollection = dbConnect(collectionName.bookingCollection);
-  const query = { _id: new ObjectId(id) };
-  const result = await bookingCollection.findOne(query);
-
-  return NextResponse.json(result);
+  const { user } = await getServerSession();
+  const isOwnerOk = await bookingCollection.findOne({ email: user?.email });
+  if (isOwnerOk) {
+    const query = { _id: new ObjectId(id) };
+    const result = await bookingCollection.findOne(query);
+    return NextResponse.json(result);
+  } else {
+    return NextResponse.json({ status: false, message: "forbidden access" });
+  }
 };
 
 export const PATCH = async (req, { params }) => {
@@ -23,8 +28,18 @@ export const PATCH = async (req, { params }) => {
     $set: { ...body },
   };
   const options = { upsert: true };
-  const result = await bookingCollection.updateOne(filter, updatedDoc, options);
-  revalidatePath("/my-booking");
+  const { user } = await getServerSession();
+  const isOwnerOk = await bookingCollection.findOne({ email: user?.email });
+  if (isOwnerOk) {
+    const result = await bookingCollection.updateOne(
+      filter,
+      updatedDoc,
+      options
+    );
+    revalidatePath("/my-booking");
 
-  return NextResponse.json(result);
+    return NextResponse.json(result);
+  } else {
+    return NextResponse.json({ status: false, message: "forbidden access." });
+  }
 };
